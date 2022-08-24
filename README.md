@@ -1,2 +1,2 @@
 # Mobileinka
- mobileapss
+ mobile apps using android studio
