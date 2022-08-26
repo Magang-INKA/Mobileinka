@@ -5,5 +5,5 @@
     <string name="splash_desc">Create your quick account, find the best rates and transfer your items from one location to another.</string>
 
     <string name="login_judul">Welcome back!</string>
-
+    <string name="login">Login</string>
 </resources>
