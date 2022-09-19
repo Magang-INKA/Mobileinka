@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutterinka/pages/login.dart';
+import 'package:flutterinka/pages/register.dart';
+import 'package:flutterinka/pages/home.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(new MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
+  // const ({ Key? key }) : super(key: key);
   @override
-  Widget build(BuildContext context) {
 
+  //12
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: 'home',
+      routes: {
+        'login': (context) => Login(),
+        'register' : (context) => Register(),
+        'home' : (context) => HomePage()
+      },
+    );
   }
 }
