@@ -1,164 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_login/flutter_login.dart';
+// import 'package:flutterinka/pages/dashboard.dart';
+import 'package:flutterinka/pages/home.dart';
+// import 'package:flutter_login/theme.dart';
 
-class Login extends StatefulWidget {
-  const Login({ Key? key }) : super(key: key);
+const users = {
+  'admin@gmail.com': '12345',
+  'operator@gmail.com': '12345',
+};
 
-  @override
-  State<Login> createState() => _LoginState();
-}
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
-class _LoginState extends State<Login> {
+  Duration get loginTime => const Duration(milliseconds: 2250);
+
+  Future<String?> _authUser(LoginData data) {
+    debugPrint('Name: ${data.name}, Password: ${data.password}');
+    return Future.delayed(loginTime).then((_) {
+      if (!users.containsKey(data.name)) {
+        return 'User not exists';
+      }
+      if (users[data.name] != data.password) {
+        return 'Password does not match';
+      }
+      return null;
+    });
+  }
+
+  // Future<String?> _signupUser(SignupData data) {
+  //   debugPrint('Signup Name: ${data.name}, Password: ${data.password}');
+  //   return Future.delayed(loginTime).then((_) {
+  //     return null;
+  //   });
+  // }
+
+  Future<String?> _recoverPassword(String name) {
+    debugPrint('Name: $name');
+    return Future.delayed(loginTime).then((_) {
+      if (!users.containsKey(name)) {
+        return 'User not exists';
+      }
+      return null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage('assets/images/login.png'), fit: BoxFit.cover),
+    return FlutterLogin(
+      title: 'INKA',
+      logo: const AssetImage('assets/images/iot.png'),
+      onLogin: _authUser,
+      //onSignup: _signupUser,
+      onSubmitAnimationCompleted: () {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => HomePage(),
+        ));
+      },
+      theme: LoginTheme(
+        primaryColor: Colors.blue
       ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Stack(
-          children: [
-            Container(),
-            Container(
-              padding: EdgeInsets.only(left: 35, top: 130),
-              child: Text(
-                'Welcome\nBack',
-                style: TextStyle(color: Colors.white, fontSize: 33),
-              ),
-            ),
-            SingleChildScrollView(
-              child: Container(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.5),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 35, right: 35),
-                      child: Column(
-                        children: [
-                          TextField(
-                            style: TextStyle(color: Colors.black),
-                            decoration: InputDecoration(
-                                fillColor: Colors.grey.shade100,
-                                filled: true,
-                                hintText: "Email",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                )),
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          TextField(
-                            style: TextStyle(),
-                            obscureText: true,
-                            decoration: InputDecoration(
-                                fillColor: Colors.grey.shade100,
-                                filled: true,
-                                hintText: "Password",
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                )),
-                          ),
-                          SizedBox(
-                            height: 40,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Sign in',
-                                style: TextStyle(
-                                    fontSize: 27, fontWeight: FontWeight.w700),
-                              ),
-                              CircleAvatar(
-                                radius: 30,
-                                backgroundColor: Color(0xff4c505b),
-                                child: IconButton(
-                                    color: Colors.white,
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.arrow_forward,
-                                    )),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 40,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, 'register');
-                                },
-                                child: Text(
-                                  'Sign Up',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      color: Color(0xff4c505b),
-                                      fontSize: 18),
-                                ),
-                                style: ButtonStyle(),
-                              ),
-                              TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Forgot Password',
-                                    style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      color: Color(0xff4c505b),
-                                      fontSize: 18,
-                                    ),
-                                  )),
-                            ],
-                          ),SizedBox(
-                            height: 40,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, 'home');
-                                },
-                                child: Text(
-                                  'HOME',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      color: Color(0xff4c505b),
-                                      fontSize: 18),
-                                ),
-                                style: ButtonStyle(),
-                              ),
-                              TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Forgot Password',
-                                    style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      color: Color(0xff4c505b),
-                                      fontSize: 18,
-                                    ),
-                                  )),
-                            ],
-                          )
-
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      onRecoverPassword: _recoverPassword,
     );
   }
 }
