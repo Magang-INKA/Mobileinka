@@ -43,7 +43,14 @@ dependencies:
   splash_screen_view: ^3.0.0
   percent_indicator: ^4.0.1
   fl_chart: ^0.55.1
+  shared_preferences: ^0.5.6+1
+  #linear_progress_bar: "^1.1.0"
   font_awesome_flutter: ^10.2.1
+  http: ^0.13.5
+  flutter_login: ^4.0.0
+  dropdown_search: ^5.0.3
+  #flutter_screenutil: ^1.0.2
+  # qr_code_scanner : ^1.0.0
 
 
 dev_dependencies:
@@ -72,6 +79,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - assets/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
