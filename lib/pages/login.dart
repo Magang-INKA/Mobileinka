@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 // import 'package:flutterinka/pages/dashboard.dart';
-import 'package:flutterinka/pages/home.dart';
+//import 'package:flutterinka/pages/home.dart';
+import 'package:flutterinka/widgets/navbar.dart';
 // import 'package:flutter_login/theme.dart';
 
 const users = {
@@ -47,19 +48,28 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
-      title: 'INKA',
-      logo: const AssetImage('assets/images/iot.png'),
+      title: 'SIMOCO',
+      logo: const AssetImage('assets/images/seamoco.png'),
       onLogin: _authUser,
       //onSignup: _signupUser,
       onSubmitAnimationCompleted: () {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => HomePage(),
+          builder: (context) => const Navbar(),
         ));
       },
       theme: LoginTheme(
-        primaryColor: Colors.blue
+        //primaryColor: Colors.blue
+        primaryColor: Color(0xFF0D214F),
+        buttonTheme: const LoginButtonTheme(
+          backgroundColor: Colors.white,
+          elevation: 5.0
+        ),
+        buttonStyle: const TextStyle(
+          color: Colors.black
+        )
       ),
       onRecoverPassword: _recoverPassword,
+
     );
   }
 }

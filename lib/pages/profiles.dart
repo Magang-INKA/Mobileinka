@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutterinka/pages/change_email.dart';
-import 'package:flutterinka/util/emoji_card.dart';
-import 'package:flutterinka/widgets/navbar.dart';
+//import 'package:flutterinka/pages/change_email.dart';
+//import 'package:flutterinka/util/emoji_card.dart';
+//import 'package:flutterinka/widgets/navbar.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:percent_indicator/percent_indicator.dart';
+//import 'package:percent_indicator/percent_indicator.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -15,7 +15,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
 
-  int _selectedItemIndex = 2;
+  //final int _selectedItemIndex = 2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,16 +23,16 @@ class _ProfilePageState extends State<ProfilePage> {
       // bottomNavigationBar: BottomNavigation(),
       body: Container(
         height: 1000,
-        decoration: BoxDecoration(color: Colors.blue),
+        decoration: const BoxDecoration(color: Color(0xFF0D214F)),
         child: SafeArea(
           child: Column(children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 IconButton(
@@ -51,7 +51,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Column(
-                      children: [
+                      children: const [
                         CircleAvatar(
                           backgroundImage: NetworkImage('https://www.woolha.com/media/2020/03/eevee.png'),
                           radius: 50,
@@ -78,11 +78,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
 
-                  Row(children: [
+                  Row(children: const [
                     Text('Ubah Data Akun',
                     style: TextStyle(color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -91,8 +91,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   ],),
                   const Divider(
                         thickness: 2,
+                        color: Colors.white,
                       ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   GestureDetector(
@@ -100,7 +101,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Navigator.pushNamed(context, 'changeEmail');
                       },
                     child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15)
@@ -111,15 +112,15 @@ class _ProfilePageState extends State<ProfilePage> {
                       children: [
                       Row(
                         children: [
-                          Icon(Icons.email,
+                          const Icon(Icons.email,
                               color: Colors.yellow,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 15,
                               ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+                            children: const [
                               //Title
                               Text(
                                 'Email',
@@ -131,12 +132,12 @@ class _ProfilePageState extends State<ProfilePage> {
                            ),
                           ],
                         ),
-                        Icon(Icons.chevron_right_outlined),
+                        const Icon(Icons.chevron_right_outlined),
                         ],
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                 GestureDetector(
@@ -144,7 +145,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Navigator.pushNamed(context, 'changePhone');
                       },
                     child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15)
@@ -155,15 +156,15 @@ class _ProfilePageState extends State<ProfilePage> {
                       children: [
                       Row(
                         children: [
-                          Icon(Icons.phone_android,
+                          const Icon(Icons.phone_android,
                               color: Colors.yellow,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 15,
                               ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+                            children: const [
                               //Title
                               Text(
                                 'Nomor HP',
@@ -175,12 +176,12 @@ class _ProfilePageState extends State<ProfilePage> {
                            ),
                           ],
                         ),
-                        Icon(Icons.chevron_right_outlined),
+                        const Icon(Icons.chevron_right_outlined),
                         ],
                       ),
                     ),
                   ),
-                   SizedBox(
+                   const SizedBox(
                     height: 10,
                   ),
                   GestureDetector(
@@ -188,7 +189,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         Navigator.pushNamed(context, 'changePassword');
                       },
                       child: Container(
-                       padding: EdgeInsets.all(15),
+                       padding: const EdgeInsets.all(15),
                        decoration: BoxDecoration(
                          color: Colors.white,
                          borderRadius: BorderRadius.circular(15)
@@ -199,15 +200,15 @@ class _ProfilePageState extends State<ProfilePage> {
                            children: [
                              Row(
                                children: [
-                                 Icon(FontAwesomeIcons.lock,
+                                 const Icon(FontAwesomeIcons.lock,
                                  color: Colors.yellow,
                                  ),
-                                 SizedBox(
+                                 const SizedBox(
                                    width: 15,
                                  ),
                                  Column(
                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                   children: [
+                                   children: const [
                                      //Title
                                      Text(
                                        'Kata Sandi',
@@ -219,16 +220,16 @@ class _ProfilePageState extends State<ProfilePage> {
                                  ),
                                ],
                              ),
-                             Icon(Icons.chevron_right),
+                             const Icon(Icons.chevron_right),
                            ],
                          ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
 
-                    Row(children: [
+                    Row(children: const [
                       Text('Log Out',
                       style: TextStyle(color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -237,14 +238,15 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],),
                     const Divider(
                       thickness: 2,
+                      color: Colors.white,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
 
                     // Logout
                    Container(
-                     padding: EdgeInsets.all(15),
+                     padding: const EdgeInsets.all(15),
                      decoration: BoxDecoration(
                        color: Colors.white,
                        borderRadius: BorderRadius.circular(15)
@@ -255,15 +257,15 @@ class _ProfilePageState extends State<ProfilePage> {
                          children: [
                            Row(
                              children: [
-                               Icon(FontAwesomeIcons.signOut,
+                               const Icon(FontAwesomeIcons.arrowRightFromBracket,
                                color: Colors.yellow,
                                ),
-                               SizedBox(
+                               const SizedBox(
                                  width: 15,
                                ),
                                Column(
                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                 children: [
+                                 children: const [
                                    //Title
                                    Text(
                                      'Logout',
@@ -275,25 +277,25 @@ class _ProfilePageState extends State<ProfilePage> {
                                ),
                              ],
                            ),
-                           Icon(Icons.chevron_right),
+                           const Icon(Icons.chevron_right),
                          ],
                        ),
                     ),
-                    SizedBox(height: 50,),
-                    Text('Versi Aplikasi'),
-                    Text('1.0')
+                    const SizedBox(height: 50,),
+                    const Text('Versi Aplikasi'),
+                    const Text('1.0')
 
                 ],
               ),
             ),
 
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Column(children: [
                Center(
                  child: Column(
-                   children: [
+                   children: const [
                                        ],
                  ),
                ),

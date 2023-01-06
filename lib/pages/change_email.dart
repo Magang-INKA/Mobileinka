@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutterinka/util/emoji_card.dart';
-import 'package:flutterinka/widgets/navbar.dart';
+//import 'package:flutterinka/util/emoji_card.dart';
+//import 'package:flutterinka/widgets/navbar.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:percent_indicator/percent_indicator.dart';
+//import 'package:percent_indicator/percent_indicator.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class PageEmail extends StatefulWidget {
@@ -14,7 +14,7 @@ class PageEmail extends StatefulWidget {
 
 class _PageEmailState extends State<PageEmail> {
 
-  int _selectedItemIndex = 2;
+  final int _selectedItemIndex = 2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,16 +22,16 @@ class _PageEmailState extends State<PageEmail> {
       // bottomNavigationBar: BottomNavigation(),
       body: Container(
         height: 1000,
-        decoration: BoxDecoration(color: Colors.blue),
+        decoration: const BoxDecoration(color: Colors.blue),
         child: SafeArea(
           child: Column(children: [
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 IconButton(
@@ -42,7 +42,7 @@ class _PageEmailState extends State<PageEmail> {
               ],
             ),
             // Profiles row
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Padding(
@@ -52,7 +52,7 @@ class _PageEmailState extends State<PageEmail> {
                    child: Column(
                      children: [
                       Row(children: [
-                        Text('Ubah Kata Sandi',
+                        const Text('Ubah Kata Sandi',
                         style: TextStyle(color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 18),
@@ -61,12 +61,12 @@ class _PageEmailState extends State<PageEmail> {
                       const Divider(
                         thickness: 2,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
 
                       TextField(
-                            style: TextStyle(color: Colors.black),
+                            style: const TextStyle(color: Colors.black),
                             decoration: InputDecoration(
                                 fillColor: Colors.grey.shade100,
                                 filled: true,
@@ -75,11 +75,11 @@ class _PageEmailState extends State<PageEmail> {
                                   borderRadius: BorderRadius.circular(10),
                                 )),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           TextField(
-                            style: TextStyle(color: Colors.black),
+                            style: const TextStyle(color: Colors.black),
                             decoration: InputDecoration(
                                 fillColor: Colors.grey.shade100,
                                 filled: true,
@@ -89,11 +89,11 @@ class _PageEmailState extends State<PageEmail> {
                                 )),
                           ),
 
-                          SizedBox(
+                          const SizedBox(
                             height: 15,
                           ),
                      Container(
-                       padding: EdgeInsets.all(15),
+                       padding: const EdgeInsets.all(15),
                        decoration: BoxDecoration(
                          color: Colors.white,
                          borderRadius: BorderRadius.circular(15)
@@ -102,7 +102,7 @@ class _PageEmailState extends State<PageEmail> {
                          Row(
                            mainAxisAlignment: MainAxisAlignment.center,
                            children: [
-                             Text(
+                             const Text(
                                'Simpan',
                                style: TextStyle(
                                  fontWeight: FontWeight.bold,
