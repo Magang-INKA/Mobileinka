@@ -1,12 +1,13 @@
-// import 'package:flutter/src/widgets/container.dart';
-// import 'package:flutter/src/widgets/framework.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutterinka/pages/add_location.dart';
-import 'package:flutterinka/pages/change_password.dart';
-import 'package:flutterinka/pages/data_container.dart';
-import 'package:flutterinka/pages/home.dart';
-import 'package:flutterinka/pages/profiles.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:simoco_rc/pages/category_container.dart';
+import 'package:simoco_rc/pages/category_cdroppoint.dart';
+import 'package:simoco_rc/pages/category_kapal.dart';
+import 'package:simoco_rc/pages/droppoint_add.dart';
+import '../pages/profile_page.dart';
+import '../pages/qrcode_page.dart';
 
 class Navbar extends StatefulWidget {
   const Navbar({super.key});
@@ -18,34 +19,64 @@ class Navbar extends StatefulWidget {
 class _NavbarState extends State<Navbar> {
   int currentTab = 0;
   final List<Widget> screens = [
-    HomePage(),
+    const ContainerCategory(),
     const ProfilePage(),
-    const DataContainer(),
-    const PagePassword(),
-    const FormLocation(),
+    // ContainerDroppoint(),
+    const KapalDroppoint(),
+    const DroppointAdd(),
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
-  Widget currentScreen = HomePage();
+  Widget currentScreen = const ContainerCategory();
+
+  Future<void> scanQR() async {
+    String barcodeScanRes;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+          '#ff6666', 'Cancel', true, ScanMode.QR);
+      print(barcodeScanRes);
+    } on PlatformException {
+      barcodeScanRes = 'Failed to get platform version.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.setString("_scanBarcode", barcodeScanRes);
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (context)=> const QrCode()),
+      );
+
+    // setState(() {
+    //   var _scanBarcode = barcodeScanRes;
+    // });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false, // fluter 2.x
       body: PageStorage(
         child: currentScreen,
         bucket: bucket,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-        Navigator.pushNamed(context, 'qrcode');
+        //Navigator.pushNamed(context, 'qrcode');
+        scanQR();
         },
         child: const Icon(Icons.qr_code),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
+        //resizeToAvoidBottomInset: false,
         shape: const CircularNotchedRectangle(),
         notchMargin: 10,
-        child: Container(
+        child: SizedBox(
           height: 60,
           child:
             Row(
@@ -58,7 +89,7 @@ class _NavbarState extends State<Navbar> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen = HomePage();
+                          currentScreen = const ContainerCategory();
                           currentTab = 0;
                         });
                       },
@@ -82,7 +113,7 @@ class _NavbarState extends State<Navbar> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen = const DataContainer();
+                          currentScreen = KapalDroppoint();
                           currentTab = 1;
                         });
                       },
@@ -94,7 +125,7 @@ class _NavbarState extends State<Navbar> {
                             color: currentTab == 1 ? Colors.blue : Colors.grey,
                           ),
                           Text(
-                            'Data Container',
+                            'Drop Point',
                             style: TextStyle(
                               color: currentTab == 1 ? Colors.blue : Colors.grey
                             ),
@@ -112,7 +143,7 @@ class _NavbarState extends State<Navbar> {
                       minWidth: 40,
                       onPressed: () {
                         setState(() {
-                          currentScreen = const FormLocation();
+                          currentScreen = const DroppointAdd();
                           currentTab = 2;
                         });
                       },
@@ -124,7 +155,7 @@ class _NavbarState extends State<Navbar> {
                             color: currentTab == 2 ? Colors.blue : Colors.grey,
                           ),
                           Text(
-                            'Drop Point',
+                            'Form',
                             style: TextStyle(
                               color: currentTab == 2 ? Colors.blue : Colors.grey
                             ),
@@ -158,8 +189,6 @@ class _NavbarState extends State<Navbar> {
                     ),
                   ],
                 )
-
-
               ]
             ),
 
